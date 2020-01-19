@@ -96,6 +96,10 @@ public class ControllerApp {
 			try {
 
 				numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
+				if (serebihu.numberIdIsFalse(numberID) == true) {
+					console.showMessageErr(Constants.MESSAGE_ID__NO_EXIST);
+					numberID = 0;
+				}
 			} catch (NumberFormatException e) {
 				console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
 				numberID = 0;
@@ -104,12 +108,13 @@ public class ControllerApp {
 
 		TypeMaterials material = console.readTypeMaterial();
 		Double amountMaterial = 0.0;
-		try {
-			while (numberID == 0) {
+		while (numberID == 0) {
+			try {
 				amountMaterial = console.readDouble(Constants.MESSAGE_READ_AMOUNT_MATERIAL);
+			} catch (NumberFormatException e) {
+				console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
+				numberID = 0;
 			}
-		} catch (NumberFormatException e) {
-			console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
 		}
 		serebihu.addMaterial(material, amountMaterial, numberID);
 	}
@@ -120,6 +125,10 @@ public class ControllerApp {
 			try {
 
 				numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
+				if (serebihu.numberIdIsFalse(numberID) == true) {
+					console.showMessageErr(Constants.MESSAGE_ID__NO_EXIST);
+					numberID = 0;
+				}
 			} catch (NumberFormatException e) {
 				console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
 				numberID = 0;
