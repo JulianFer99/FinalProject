@@ -22,7 +22,7 @@ public class ControllerApp {
 		console = new Console();
 		run();
 	}
-	
+
 	public void run() {
 		boolean isTrue = true;
 		while (isTrue) {
@@ -69,21 +69,21 @@ public class ControllerApp {
 		}
 	}
 
-	public void doCreateBeneficiary()  {
+	public void doCreateBeneficiary() {
 		String name = console.readString(Constants.MESSAGE_READ_NAME);
 		TypeID id = console.readTypeID();
-		long numberID=0;
-		try{
-			while(numberID==0) {
-			numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
-			if(serebihu.numberIdIsFalse(numberID)==false) {
-				console.showMessageErr(Constants.MESSAGE_ID_EXIST);
-				numberID=0;
+		long numberID = 0;
+		while (numberID == 0) {
+			try {
+				numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
+				if (serebihu.numberIdIsFalse(numberID) == false) {
+					console.showMessageErr(Constants.MESSAGE_ID_EXIST);
+					numberID = 0;
+				}
+			} catch (NumberFormatException e) {
+				console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
+				numberID = 0;
 			}
-			}
-		}catch (NumberFormatException e) {
-			console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
-			numberID=0;
 		}
 		Beneficiary beneficiary = new Beneficiary(name, id, numberID);
 		ManageBeneficiary manageBeneficiary = new ManageBeneficiary(beneficiary);
@@ -91,37 +91,39 @@ public class ControllerApp {
 	}
 
 	public void doAddMaterialBeneficiary() {
-		long numberID = 0 ;
-		try{
-			while(numberID==0) {
-			numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
+		long numberID = 0;
+		while (numberID == 0) {
+			try {
+
+				numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
+			} catch (NumberFormatException e) {
+				console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
+				numberID = 0;
 			}
-		}catch (NumberFormatException e) {
-			console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
-			numberID=0;
 		}
-		
+
 		TypeMaterials material = console.readTypeMaterial();
-		Double amountMaterial = 0.0 ;
-		try{
-			while(numberID==0) {
+		Double amountMaterial = 0.0;
+		try {
+			while (numberID == 0) {
 				amountMaterial = console.readDouble(Constants.MESSAGE_READ_AMOUNT_MATERIAL);
 			}
-		}catch (NumberFormatException e) {
+		} catch (NumberFormatException e) {
 			console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
 		}
 		serebihu.addMaterial(material, amountMaterial, numberID);
 	}
 
 	public void doRedeemPoints() {
-		long numberID = 0 ;
-		try{
-			while(numberID==0) {
-			numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
+		long numberID = 0;
+		while (numberID == 0) {
+			try {
+
+				numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
+			} catch (NumberFormatException e) {
+				console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
+				numberID = 0;
 			}
-		}catch (NumberFormatException e) {
-			console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
-			numberID=0;
 		}
 		double points = serebihu.askManageBeneficiary(numberID).getPointAcumulated();
 		console.showMessage(Constants.MESSAGE_READ_NUMBER_POINTS + points);
@@ -137,21 +139,19 @@ public class ControllerApp {
 	}
 
 	private void doRemoveBeneficiary() {
-		long numberID = 0 ;
-		try{
-			while(numberID==0) {
-			numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
-			if(serebihu.numberIdIsFalse(numberID)==true) {
-				console.showMessageErr(Constants.MESSAGE_ID__NO_EXIST);
-				numberID=0;
+		long numberID = 0;
+		while (numberID == 0) {
+			try {
+				numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
+				if (serebihu.numberIdIsFalse(numberID) == true) {
+					console.showMessageErr(Constants.MESSAGE_ID__NO_EXIST);
+					numberID = 0;
+				}
+			} catch (NumberFormatException e) {
+				console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
 			}
-			}
-		}catch (NumberFormatException e) {
-			console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
 		}
 		serebihu.removeManageBeneficiary(numberID);
 	}
-
-	
 
 }
