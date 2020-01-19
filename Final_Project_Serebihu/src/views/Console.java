@@ -177,7 +177,7 @@ public class Console {
 
 	public void generateHeader1() {
 		System.out.println(String.format(Constants.FORMAT_1, Constants.HEADER_BENEFICIARY));
-		System.out.println("═══════════════════════════════════════════════════════════════════════════════════════════");
+		System.out.println("_");
 	}
 
 	public void generateHeader2() {
