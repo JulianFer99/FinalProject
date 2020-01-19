@@ -30,7 +30,7 @@ public class Serebihu {
 		}
 		return isTrue;
 	}
-
+	
 	public void redeemPoints(Bond bond, long numberID) {
 		double points = askManageBeneficiary(numberID).getPointAcumulated();
 		askManageBeneficiary(numberID).addBond(bond);
