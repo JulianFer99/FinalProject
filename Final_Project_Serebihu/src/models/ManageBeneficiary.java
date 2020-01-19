@@ -29,6 +29,7 @@ public class ManageBeneficiary {
 	public ManageBeneficiary(Beneficiary beneficiary) {
 		this.beneficiary = beneficiary;
 		bonds = new ArrayList<Bond>();
+		pointAcumulated = 0;
 	}
 
 	public void addBond(Bond bond) {
