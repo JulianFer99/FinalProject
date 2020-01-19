@@ -1,7 +1,7 @@
 package views;
 
 public class Constants {
-	public static final String SHOW_MENU = "Ingrmanuek es una loca deseada: " + "\n" + "1.Agregar beneficiario al sistema"
+	public static final String SHOW_MENU = "Ingrese la opcion deseada: " + "\n" + "1.Agregar beneficiario al sistema"
 			+ "\n" + "2.Agregar material a un beneficiario" + "\n" + "3.Redimir puntos de un beneficiario" + "\n"
 			+ "4.Consultar información básica de todos los beneficiarios" + "\n"
 			+ "5.Mostrar listado de los datos de los beneficiarios" + "\n"
@@ -22,7 +22,10 @@ public class Constants {
 			+ "1. Descuento de mercado\n" + "2. Boleto de transporte\n" + "3. Bono de vacaciones\n";
 	public static final String MESSAGE_READ_TYPE_TRANSPORT = "Seleccione el tipo de transporte que desea: \n"
 			+ "1. Autobus\n" + "2. Taxi\n" + "3. Transmilenio";
-	public static final String MESSAGE_READ_NUMBER_POINTS = "";
+	public static final String MESSAGE_READ_NUMBER_POINTS = "Los puntos del usuario son";
+	public static final String MESSAGE_ID_EXIST = "El numero de cedula ya existe en el sitema";
+	public static final String MESSAGE_ID__NO_EXIST = "El numero de cedula no existe en el sitema";
+	public static final String MESSAGE_USER_REMOVE = "El usuario fue removido con exito de nuestro sistema , al igual que toda su informacion registrada";
 	public static final String MESSAGE_NAME = "Nombre";
 	public static final String MESSAGE_TYPE_ID = "Tipo de documento";
 	public static final String MESSAGE_NUMBER_ID = "Numero de documento";

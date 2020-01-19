@@ -27,6 +27,26 @@ public class Console {
 		}
 		return option;
 	}
+	
+	public int readBond() throws IncorrectOptionException {
+		System.out.println(Constants.MESSAGE_READ_TYPE_BOND);
+		int option = 0;
+		option = Integer.parseInt(scannerObj.nextLine());
+		if (option < 1 || option > 3) {
+			throw new IncorrectOptionException();
+		}
+		return option;
+	}
+	
+	public int readMaterial() throws IncorrectOptionException {
+		System.out.println(Constants.MESSAGE_READ_TYPE_MATERIAL);
+		int option = 0;
+		option = Integer.parseInt(scannerObj.nextLine());
+		if (option < 1 || option > 4) {
+			throw new IncorrectOptionException();
+		}
+		return option;
+	}
 
 	public void showMessage(String message) {
 		System.out.println(message);
@@ -60,24 +80,37 @@ public class Console {
 
 	public TypeMaterials readTypeMaterial() {
 		TypeMaterials typeMaterial = null;
-		System.out.println(Constants.MESSAGE_READ_TYPE_MATERIAL);
-		int option = Integer.parseInt(scannerObj.nextLine());
-		switch (option) {
-		case 1:
-			typeMaterial = TypeMaterials.PAPER;
-			break;
-		case 2:
-			typeMaterial = TypeMaterials.PLASTIC;
-			break;
-		case 3:
-			typeMaterial = TypeMaterials.GLAS;
-			break;
-		case 4:
-			typeMaterial = TypeMaterials.COPPER;
-			break;
-		}
+		boolean isTrue = true;
+		while (isTrue) {
+			int option = 0;
+				try {
+					option = readMaterial();
+				} catch (IncorrectOptionException e) {
+					showMessageErr(e.getMessage());
+				} catch (NumberFormatException e) {
+				showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
+			}
+			switch (option) {
 
-		return typeMaterial;
+			case 1:
+				typeMaterial = TypeMaterials.PAPER;
+				isTrue = false;
+				break;
+			case 2:
+				typeMaterial = TypeMaterials.PLASTIC;
+				isTrue = false;
+				break;
+			case 3:
+				typeMaterial = TypeMaterials.GLAS;
+				isTrue = false;
+				break;
+			case 4:
+				typeMaterial = TypeMaterials.COPPER;
+				isTrue = false;
+				break;
+			}
+		}return typeMaterial;
+
 	}
 
 	public TypeID readTypeID() {
@@ -113,40 +146,33 @@ public class Console {
 
 	public TypeBond readTypeBond() {
 		TypeBond typeBond = null;
-		System.out.println(Constants.MESSAGE_READ_TYPE_BOND);
-		int option = Integer.parseInt(scannerObj.nextLine());
-		switch (option) {
-		case 1:
-			typeBond = TypeBond.DISCOUNT_MARKET;
-			break;
-		case 2:
-			typeBond = TypeBond.TRANSPORT_TICKET;
-			readTypeTransport();
-			break;
-		case 3:
-			typeBond = TypeBond.VACATION_TICKET;
-			break;
-		}
-		return typeBond;
-	}
+		boolean isTrue = true;
+		while (isTrue) {
+			int option = 0;
+				try {
+					option = readBond();
+				} catch (IncorrectOptionException e) {
+					showMessageErr(e.getMessage());
+				} catch (NumberFormatException e) {
+				showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
+			}
+			switch (option) {
 
-	public TypeTransport readTypeTransport() {
-		TypeTransport typeTransport = null;
-		System.out.println(Constants.MESSAGE_READ_TYPE_TRANSPORT);
-		int option = Integer.parseInt(scannerObj.nextLine());
-		switch (option) {
-		case 1:
-			typeTransport = TypeTransport.BUS;
-			break;
-		case 2:
-			typeTransport = TypeTransport.CAB;
-			break;
-		case 3:
-			typeTransport = TypeTransport.TRANSMILENIO;
-			break;
-		}
+			case 1:
+				typeBond = TypeBond.DISCOUNT_MARKET;
+				isTrue = false;
+				break;
+			case 2:
+				typeBond = TypeBond.TRANSPORT_TICKET;
+				isTrue = false;
+				break;
+			case 3:
+				typeBond = TypeBond.VACATION_TICKET;
+				isTrue = false;
+				break;
+			}
+		}return typeBond;
 
-		return typeTransport;
 	}
 
 	public void generateHeader1() {

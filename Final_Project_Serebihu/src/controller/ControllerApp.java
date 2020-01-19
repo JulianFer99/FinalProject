@@ -22,54 +22,7 @@ public class ControllerApp {
 		console = new Console();
 		run();
 	}
-
-	public void doCreateBeneficiary()  {
-		String name = console.readString(Constants.MESSAGE_READ_NAME);
-		TypeID id = console.readTypeID();
-		long numberID=0;
-		try{
-			while(numberID==0) {
-			numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
-			if(serebihu.numberIdIsFalse(numberID)==false) {
-				console.showMessageErr("El numero de cedula ya existe en el sistema");
-				numberID=0;
-			}
-			}
-		}catch (NumberFormatException e) {
-			console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
-		}
-		Beneficiary beneficiary = new Beneficiary(name, id, numberID);
-		ManageBeneficiary manageBeneficiary = new ManageBeneficiary(beneficiary);
-		serebihu.addBeneficiary(manageBeneficiary);
-	}
-
-	public void doAddMaterialBeneficiary() {
-		long numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
-		TypeMaterials material = console.readTypeMaterial();
-		Double amountMaterial = console.readDouble(Constants.MESSAGE_READ_AMOUNT_MATERIAL);
-		serebihu.addMaterial(material, amountMaterial, numberID);
-	}
-
-	public void doRedeemPoints() {
-		long numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
-		double points = serebihu.askManageBeneficiary(numberID).getPointAcumulated();
-		console.showMessage("Los puntos del usuario son" + points);
-		TypeBond typeBond = console.readTypeBond();
-		Bond bond = new Bond(typeBond.getCode(), calculateDueDate(), typeBond, typeBond.getPoints());
-		serebihu.redeemPoints(bond, numberID);
-	}
-
-	private LocalDate calculateDueDate() {
-		LocalDate actualDate = LocalDate.now();
-		int month = actualDate.getMonthValue();
-		return LocalDate.of(actualDate.getYear(), month + 2, actualDate.getDayOfYear());
-	}
-
-	private void doRemoveBeneficiary() {
-		long numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
-		serebihu.removeManageBeneficiary(numberID);
-	}
-
+	
 	public void run() {
 		boolean isTrue = true;
 		while (isTrue) {
@@ -105,6 +58,7 @@ public class ControllerApp {
 				break;
 			case 7:
 				doRemoveBeneficiary();
+				console.showMessage(Constants.MESSAGE_ADD_WITH_EXIT_MATERIAL);
 				break;
 			case 8: /* Reportes */
 			case 9:
@@ -114,5 +68,87 @@ public class ControllerApp {
 			}
 		}
 	}
+
+	public void doCreateBeneficiary()  {
+		String name = console.readString(Constants.MESSAGE_READ_NAME);
+		TypeID id = console.readTypeID();
+		long numberID=0;
+		try{
+			while(numberID==0) {
+			numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
+			if(serebihu.numberIdIsFalse(numberID)==false) {
+				console.showMessageErr(Constants.MESSAGE_ID_EXIST);
+				numberID=0;
+			}
+			}
+		}catch (NumberFormatException e) {
+			console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
+		}
+		Beneficiary beneficiary = new Beneficiary(name, id, numberID);
+		ManageBeneficiary manageBeneficiary = new ManageBeneficiary(beneficiary);
+		serebihu.addBeneficiary(manageBeneficiary);
+	}
+
+	public void doAddMaterialBeneficiary() {
+		long numberID = 0 ;
+		try{
+			while(numberID==0) {
+			numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
+			}
+		}catch (NumberFormatException e) {
+			console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
+		}
+		
+		TypeMaterials material = console.readTypeMaterial();
+		Double amountMaterial = 0.0 ;
+		try{
+			while(numberID==0) {
+				amountMaterial = console.readDouble(Constants.MESSAGE_READ_AMOUNT_MATERIAL);
+			}
+		}catch (NumberFormatException e) {
+			console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
+		}
+		serebihu.addMaterial(material, amountMaterial, numberID);
+	}
+
+	public void doRedeemPoints() {
+		long numberID = 0 ;
+		try{
+			while(numberID==0) {
+			numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
+			}
+		}catch (NumberFormatException e) {
+			console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
+		}
+		double points = serebihu.askManageBeneficiary(numberID).getPointAcumulated();
+		console.showMessage(Constants.MESSAGE_READ_NUMBER_POINTS + points);
+		TypeBond typeBond = console.readTypeBond();
+		Bond bond = new Bond(typeBond.getCode(), calculateDueDate(), typeBond, typeBond.getPoints());
+		serebihu.redeemPoints(bond, numberID);
+	}
+
+	private LocalDate calculateDueDate() {
+		LocalDate actualDate = LocalDate.now();
+		int month = actualDate.getMonthValue();
+		return LocalDate.of(actualDate.getYear(), month + 2, actualDate.getDayOfYear());
+	}
+
+	private void doRemoveBeneficiary() {
+		long numberID = 0 ;
+		try{
+			while(numberID==0) {
+			numberID = console.readLong(Constants.MESSAGE_READ_NUMBER_ID);
+			if(serebihu.numberIdIsFalse(numberID)==true) {
+				console.showMessageErr(Constants.MESSAGE_ID__NO_EXIST);
+				numberID=0;
+			}
+			}
+		}catch (NumberFormatException e) {
+			console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
+		}
+		serebihu.removeManageBeneficiary(numberID);
+	}
+
+	
 
 }
