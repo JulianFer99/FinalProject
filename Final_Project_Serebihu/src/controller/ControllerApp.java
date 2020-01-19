@@ -108,7 +108,7 @@ public class ControllerApp {
 
 		TypeMaterials material = console.readTypeMaterial();
 		Double amountMaterial = 0.0;
-		while (numberID == 0) {
+		while (amountMaterial == 0) {
 			try {
 				amountMaterial = console.readDouble(Constants.MESSAGE_READ_AMOUNT_MATERIAL);
 			} catch (NumberFormatException e) {
