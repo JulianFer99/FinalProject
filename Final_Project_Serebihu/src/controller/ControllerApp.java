@@ -105,17 +105,18 @@ public class ControllerApp {
 				numberID = 0;
 			}
 		}
-
+System.out.println(numberID);
 		TypeMaterials material = console.readTypeMaterial();
-		Double amountMaterial = 0.0;
+		System.out.println(material);
+		double amountMaterial = 0;
 		while (amountMaterial == 0) {
 			try {
 				amountMaterial = console.readDouble(Constants.MESSAGE_READ_AMOUNT_MATERIAL);
 			} catch (NumberFormatException e) {
 				console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
-				numberID = 0;
 			}
 		}
+		System.out.println(amountMaterial);
 		serebihu.addMaterial(material, amountMaterial, numberID);
 	}
 
@@ -131,7 +132,6 @@ public class ControllerApp {
 				}
 			} catch (NumberFormatException e) {
 				console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
-				numberID = 0;
 			}
 		}
 		double points = serebihu.askManageBeneficiary(numberID).getPointAcumulated();
