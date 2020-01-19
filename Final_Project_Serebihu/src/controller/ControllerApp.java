@@ -83,6 +83,7 @@ public class ControllerApp {
 			}
 		}catch (NumberFormatException e) {
 			console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
+			numberID=0;
 		}
 		Beneficiary beneficiary = new Beneficiary(name, id, numberID);
 		ManageBeneficiary manageBeneficiary = new ManageBeneficiary(beneficiary);
@@ -97,6 +98,7 @@ public class ControllerApp {
 			}
 		}catch (NumberFormatException e) {
 			console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
+			numberID=0;
 		}
 		
 		TypeMaterials material = console.readTypeMaterial();
@@ -119,6 +121,7 @@ public class ControllerApp {
 			}
 		}catch (NumberFormatException e) {
 			console.showMessageErr(Constants.MESSAGE_INCORRECT_OPTION);
+			numberID=0;
 		}
 		double points = serebihu.askManageBeneficiary(numberID).getPointAcumulated();
 		console.showMessage(Constants.MESSAGE_READ_NUMBER_POINTS + points);
