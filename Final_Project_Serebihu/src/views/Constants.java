@@ -1,7 +1,7 @@
 package views;
 
 public class Constants {
-	public static final String SHOW_MENU = "Julian me lo pela: " + "\n" + "1.Agregar beneficiario al sistema"
+	public static final String SHOW_MENU = "Ingrese la opcion deseada: " + "\n" + "1.Agregar beneficiario al sistema"
 			+ "\n" + "2.Agregar material a un beneficiario" + "\n" + "3.Redimir puntos de un beneficiario" + "\n"
 			+ "4.Consultar información básica de todos los beneficiarios" + "\n"
 			+ "5.Mostrar listado de los datos de los beneficiarios" + "\n"
